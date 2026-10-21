@@ -1,0 +1,12 @@
+# Python virtual environment
+.venv/
+
+# Python temporary files
+__pycache__/
+*.pyc
+
+# Local datasets
+data/
+
+# Python testing cache
+.pytest_cache/
