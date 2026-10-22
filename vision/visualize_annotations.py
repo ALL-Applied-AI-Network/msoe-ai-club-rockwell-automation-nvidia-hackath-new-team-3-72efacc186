@@ -61,3 +61,5 @@ if not cv2.imwrite(str(OUTPUT_PATH), image):
     raise RuntimeError("Failed to save annotated image")
 
 print(f"\nSuccess! Saved result to: {OUTPUT_PATH}")
+
+
