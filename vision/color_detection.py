@@ -57,6 +57,12 @@ def detect_colored_objects(image):
             if area < 20 or area > 5000:
                 continue
 
+            # Experimental size filter for yellow cubes.
+            # These limits are based on Chris's first sample image.
+            if color_name == "cube_yellow":
+                if w > 45 or h > 45:
+                    continue
+
             detections.append({
                 "class": color_name,
                 "bbox_xyxy": [x, y, x + w, y + h]
