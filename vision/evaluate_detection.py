@@ -1,3 +1,11 @@
+from pathlib import Path
+import cv2
+
+from vision.color_detection import detect_colored_objects
+from vision.object_detection import load_annotations
+
+
+
 def calculate_iou(box1, box2):
     """
     Calculate Intersection over Union (IoU)
@@ -31,16 +39,81 @@ def calculate_iou(box1, box2):
 
 
 if __name__ == "__main__":
+    project_root = Path(__file__).resolve().parent.parent
 
-    # Chris's actual red cube annotation
-    ground_truth = [2410, 1436, 2445, 1472]
+    image_path = project_root / "data" / "tablecam_sample_003" / "rgb_0000.png"
+    labels_path = project_root / "data" / "tablecam_sample_003" / "annotations_readable.json"
 
-    # Our OpenCV prediction
-    prediction = [2410, 1437, 2445, 1472]
+    image = cv2.imread(str(image_path))
 
-    iou = calculate_iou(ground_truth, prediction)
+    if image is None:
+        raise FileNotFoundError(f"Cannot load image: {image_path}")
 
-    print(f"Ground truth: {ground_truth}")
-    print(f"Prediction:   {prediction}")
-    print(f"IoU Score:    {iou:.4f}")
-    print(f"IoU Percent:  {iou * 100:.2f}%")
+    predictions = detect_colored_objects(image)
+    annotations = load_annotations(labels_path)
+
+    # Evaluate only cube classes for this baseline.
+    cube_classes = {"cube_red", "cube_blue", "cube_yellow"}
+
+    ground_truth = [
+        obj for obj in annotations
+        if obj["class"] in cube_classes
+    ]
+
+    matched = set()
+    true_positives = 0
+    false_positives = 0
+    iou_scores = []
+
+    for prediction in predictions:
+        best_iou = 0.0
+        best_index = None
+
+        for index, actual in enumerate(ground_truth):
+            if index in matched:
+                continue
+
+            if prediction["class"] != actual["class"]:
+                continue
+
+            iou = calculate_iou(
+                prediction["bbox_xyxy"],
+                actual["bbox_xyxy"]
+            )
+
+            if iou > best_iou:
+                best_iou = iou
+                best_index = index
+
+        if best_index is not None and best_iou >= 0.5:
+            matched.add(best_index)
+            true_positives += 1
+            iou_scores.append(best_iou)
+        else:
+            false_positives += 1
+
+    false_negatives = len(ground_truth) - len(matched)
+
+    precision = (
+        true_positives / (true_positives + false_positives)
+        if true_positives + false_positives else 0.0
+    )
+
+    recall = (
+        true_positives / (true_positives + false_negatives)
+        if true_positives + false_negatives else 0.0
+    )
+
+    average_iou = (
+        sum(iou_scores) / len(iou_scores)
+        if iou_scores else 0.0
+    )
+
+    print(f"Ground-truth cubes: {len(ground_truth)}")
+    print(f"Predictions: {len(predictions)}")
+    print(f"True positives: {true_positives}")
+    print(f"False positives: {false_positives}")
+    print(f"False negatives: {false_negatives}")
+    print(f"Precision: {precision:.2%}")
+    print(f"Recall: {recall:.2%}")
+    print(f"Average matched IoU: {average_iou:.2%}")

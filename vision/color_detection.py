@@ -2,25 +2,12 @@ from pathlib import Path
 import cv2
 import numpy as np
 
-# Project paths
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 IMAGE_PATH = PROJECT_ROOT / "data" / "tablecam_sample_003" / "rgb_0000.png"
 OUTPUT_DIR = PROJECT_ROOT / "data" / "outputs"
 
-OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-
-# Load Chris's camera image
-image = cv2.imread(str(IMAGE_PATH))
-
-if image is None:
-    raise FileNotFoundError(f"Cannot load image: {IMAGE_PATH}")
-
-# Convert image from BGR to HSV color space
-hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
-
-# Initial HSV ranges for our three cube colors
-# These are starting thresholds, not yet calibrated.
-color_ranges = {
+# Initial HSV thresholds for cube colors
+COLOR_RANGES = {
     "cube_red": [
         (np.array([0, 100, 80]), np.array([10, 255, 255])),
         (np.array([170, 100, 80]), np.array([179, 255, 255]))
@@ -33,73 +20,100 @@ color_ranges = {
     ]
 }
 
-detections = []
 
-for color_name, ranges in color_ranges.items():
-    # Create a mask for this color
-    mask = np.zeros(hsv.shape[:2], dtype=np.uint8)
+def detect_colored_objects(image):
+    """
+    Detect colored objects from camera image pixels.
 
-    for lower, upper in ranges:
-        mask = cv2.bitwise_or(
+    Returns detections using Chris's class and bbox_xyxy fields.
+    Does not use ground-truth annotations.
+    """
+    hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+    detections = []
+
+    for color_name, ranges in COLOR_RANGES.items():
+        mask = np.zeros(hsv.shape[:2], dtype=np.uint8)
+
+        for lower, upper in ranges:
+            mask = cv2.bitwise_or(
+                mask,
+                cv2.inRange(hsv, lower, upper)
+            )
+
+        contours, _ = cv2.findContours(
             mask,
-            cv2.inRange(hsv, lower, upper)
+            cv2.RETR_EXTERNAL,
+            cv2.CHAIN_APPROX_SIMPLE
         )
 
-    # Find colored regions
-    contours, _ = cv2.findContours(
-        mask,
-        cv2.RETR_EXTERNAL,
-        cv2.CHAIN_APPROX_SIMPLE
-    )
+        for contour in contours:
+            area = cv2.contourArea(contour)
+            x, y, w, h = cv2.boundingRect(contour)
 
-    for contour in contours:
-        area = cv2.contourArea(contour)
+            # Temporary ROI for Chris's sample TableCam
+            if not (1500 <= x <= 2500 and 1100 <= y <= 1800):
+                continue
 
-        # Get the object's bounding rectangle
-        x, y, w, h = cv2.boundingRect(contour)
+            if area < 20 or area > 5000:
+                continue
 
-        # Only consider objects within the tabletop region.
-        # Initial bounds based on Chris's sample image.
-        if not (1500 <= x <= 2500 and 1100 <= y <= 1800):
-            continue
+            detections.append({
+                "class": color_name,
+                "bbox_xyxy": [x, y, x + w, y + h]
+            })
 
-        # Ignore tiny regions and large background areas
-        if area < 20 or area > 5000:
-            continue
+    return detections
 
-        detection = {
-            "class": color_name,
-            "bbox_xyxy": [x, y, x + w, y + h]
-        }
 
-        detections.append(detection)
+def draw_detections(image, detections):
+    """Draw predicted bounding boxes on a copy of the image."""
+    output = image.copy()
 
-        # Draw bounding box and label
+    for detection in detections:
+        x1, y1, x2, y2 = detection["bbox_xyxy"]
+
         cv2.rectangle(
-            image,
-            (x, y),
-            (x + w, y + h),
+            output,
+            (x1, y1),
+            (x2, y2),
             (0, 255, 0),
             2
         )
 
         cv2.putText(
-            image,
-            color_name,
-            (x, max(y - 10, 20)),
+            output,
+            detection["class"],
+            (x1, max(y1 - 10, 20)),
             cv2.FONT_HERSHEY_SIMPLEX,
             0.7,
             (0, 255, 0),
             2
         )
 
-        print(f"Detected: {color_name} at {detection['bbox_xyxy']}")
+    return output
 
-# Save annotated image
-output_path = OUTPUT_DIR / "color_detections.png"
 
-if not cv2.imwrite(str(output_path), image):
-    raise RuntimeError("Could not save detection image")
+if __name__ == "__main__":
+    image = cv2.imread(str(IMAGE_PATH))
 
-print(f"\nTotal detections: {len(detections)}")
-print(f"Saved output to: {output_path}")
+    if image is None:
+        raise FileNotFoundError(f"Cannot load image: {IMAGE_PATH}")
+
+    detections = detect_colored_objects(image)
+
+    for detection in detections:
+        print(
+            f"Detected: {detection['class']} "
+            f"at {detection['bbox_xyxy']}"
+        )
+
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    output_path = OUTPUT_DIR / "color_detections.png"
+
+    annotated_image = draw_detections(image, detections)
+
+    if not cv2.imwrite(str(output_path), annotated_image):
+        raise RuntimeError("Could not save detection image")
+
+    print(f"\nTotal detections: {len(detections)}")
+    print(f"Saved output to: {output_path}")
