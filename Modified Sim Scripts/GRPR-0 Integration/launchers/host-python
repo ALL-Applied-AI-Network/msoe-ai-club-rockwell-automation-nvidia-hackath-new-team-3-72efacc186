@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+host_project="/home/yt-newteam3b12c/workspace/fanuc_er4ia_sim"
+container_project="/workspace/fanuc_er4ia_sim"
+translated=()
+for arg in "$@"; do
+    translated+=("${arg/#$host_project/$container_project}")
+done
+
+variant_env=()
+if [[ -n "${FANUC_GRIPPER_VARIANT:-}" ]]; then
+    variant_env=(-e "FANUC_GRIPPER_VARIANT=$FANUC_GRIPPER_VARIANT")
+fi
+
+exec docker exec -i "${variant_env[@]}" cosmos \
+    "$container_project/.venv/bin/python" "${translated[@]}"

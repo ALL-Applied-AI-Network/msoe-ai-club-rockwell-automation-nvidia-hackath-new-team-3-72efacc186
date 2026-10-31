@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+host_project="/home/yt-newteam3b12c/workspace/fanuc_er4ia_sim"
+container_project="/workspace/fanuc_er4ia_sim"
+snapshot="/workspace/.cache/huggingface/hub/models--nvidia--Cosmos3-Nano/snapshots/e59a53c25979a090fa8706c9acc0c254a6e89b92"
+translated=()
+for arg in "$@"; do
+    translated+=("${arg/#$host_project/$container_project}")
+done
+
+variant_env=()
+if [[ -n "${FANUC_GRIPPER_VARIANT:-}" ]]; then
+    variant_env=(-e "FANUC_GRIPPER_VARIANT=$FANUC_GRIPPER_VARIANT")
+fi
+
+exec docker exec -i \
+    -e HF_HOME=/workspace/.cache/huggingface \
+    -e COSMOS3_NANO_PATH="$snapshot" \
+    "${variant_env[@]}" \
+    cosmos python "${translated[@]}"
