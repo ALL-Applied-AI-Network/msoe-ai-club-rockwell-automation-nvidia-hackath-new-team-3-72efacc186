@@ -1,0 +1,38 @@
+```json
+{
+  "objects": [
+    {
+      "label": "yellow cube",
+      "category": "cube",
+      "colour": "yellow",
+      "center": [
+        489,
+        573
+      ],
+      "bbox": [
+        486,
+        564,
+        497,
+        584
+      ],
+      "graspable": true
+    },
+    {
+      "label": "yellow cube",
+      "category": "cube",
+      "colour": "yellow",
+      "center": [
+        636,
+        595
+      ],
+      "bbox": [
+        632,
+        586,
+        643,
+        605
+      ],
+      "graspable": true
+    }
+  ]
+}
+```

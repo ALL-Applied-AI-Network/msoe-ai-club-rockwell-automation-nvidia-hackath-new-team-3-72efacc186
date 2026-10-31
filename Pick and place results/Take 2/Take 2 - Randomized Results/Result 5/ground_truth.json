@@ -1,0 +1,127 @@
+{
+  "objects": [
+    {
+      "name": "SortCube0",
+      "category": "cube",
+      "colour": "yellow",
+      "xyz": [
+        0.32607232089044025,
+        0.2224917993384585,
+        0.005
+      ],
+      "size": 0.01,
+      "yaw_deg": 11.38
+    },
+    {
+      "name": "SortCube1",
+      "category": "cube",
+      "colour": "yellow",
+      "xyz": [
+        0.4445478188665716,
+        0.2029813060366585,
+        0.005
+      ],
+      "size": 0.01,
+      "yaw_deg": 12.541
+    },
+    {
+      "name": "SortCube2",
+      "category": "cube",
+      "colour": "red",
+      "xyz": [
+        0.28331571446164466,
+        0.010468498369656909,
+        0.005
+      ],
+      "size": 0.01,
+      "yaw_deg": -2.045
+    },
+    {
+      "name": "SortCube3",
+      "category": "cube",
+      "colour": "red",
+      "xyz": [
+        0.36953982888497927,
+        0.05173567963719239,
+        0.005
+      ],
+      "size": 0.01,
+      "yaw_deg": 22.559
+    },
+    {
+      "name": "SortCube4",
+      "category": "cube",
+      "colour": "blue",
+      "xyz": [
+        0.45759646100781715,
+        -0.10860133966239618,
+        0.005
+      ],
+      "size": 0.01,
+      "yaw_deg": 19.757
+    },
+    {
+      "name": "SortCube5",
+      "category": "cube",
+      "colour": "blue",
+      "xyz": [
+        0.2489628623323748,
+        0.2261002365702078,
+        0.005
+      ],
+      "size": 0.01,
+      "yaw_deg": -10.978
+    },
+    {
+      "name": "SortCap0",
+      "category": "cap",
+      "colour": "yellow",
+      "xyz": [
+        0.461165,
+        0.085596,
+        0.00785
+      ],
+      "orientation": "narrow_end_up",
+      "size": 0.03175
+    },
+    {
+      "name": "SortCap1",
+      "category": "cap",
+      "colour": "yellow",
+      "xyz": [
+        0.376209,
+        -0.120583,
+        0.00785
+      ],
+      "orientation": "narrow_end_up",
+      "size": 0.03175
+    },
+    {
+      "name": "SortVial0",
+      "category": "vial",
+      "colour": "clear",
+      "xyz": [
+        0.423296,
+        -0.218227,
+        0.0085
+      ],
+      "size": 0.017,
+      "length": 0.14,
+      "yaw_deg": 39.638288
+    },
+    {
+      "name": "SortVial1",
+      "category": "vial",
+      "colour": "clear",
+      "xyz": [
+        0.399653,
+        -0.007706,
+        0.0085
+      ],
+      "size": 0.017,
+      "length": 0.14,
+      "yaw_deg": 10.367641
+    }
+  ],
+  "bins": {}
+}

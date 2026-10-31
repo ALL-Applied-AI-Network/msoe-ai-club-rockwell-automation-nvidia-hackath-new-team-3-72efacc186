@@ -1,0 +1,12 @@
+{
+  "run": "randomized_04",
+  "seed": 728411729,
+  "pipeline_completed": true,
+  "task_complete": true,
+  "verified_pickups": 6,
+  "verified_placements": 6,
+  "abort_reason": null,
+  "rendered": false,
+  "frames": 1656,
+  "failure_stage": null
+}

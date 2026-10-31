@@ -1,0 +1,102 @@
+```json
+{
+  "objects": [
+    {
+      "label": "blue cube",
+      "category": "cube",
+      "colour": "blue",
+      "center": [
+        438,
+        607
+      ],
+      "bbox": [
+        435,
+        596,
+        445,
+        616
+      ],
+      "graspable": true
+    },
+    {
+      "label": "blue cube",
+      "category": "cube",
+      "colour": "blue",
+      "center": [
+        443,
+        756
+      ],
+      "bbox": [
+        439,
+        745,
+        450,
+            766
+      ],
+      "graspable": true
+    },
+    {
+      "label": "red cube",
+      "category": "cube",
+      "colour": "red",
+      "center": [
+        573,
+            694
+      ],
+      "bbox": [
+        569,
+            686,
+        578,
+            702
+      ],
+      "graspable": true
+    },
+    {
+      "label": "red cube",
+      "category": "cube",
+      "colour": "red",
+      "center": [
+        608,
+            657
+      ],
+      "bbox": [
+        604,
+            648,
+        614,
+            666
+      ],
+      "graspable": true
+    },
+    {
+      "label": "yellow cube",
+      "category": "cube",
+      "colour": "yellow",
+      "center": [
+        469,
+            560
+      ],
+      "bbox": [
+        467,
+            553,
+        475,
+            570
+      ],
+      "graspable": true
+    },
+    {
+      "label": "yellow cube",
+      "category": "cube",
+      "colour": "yellow",
+      "center": [
+        620,
+            589
+      ],
+      "bbox": [
+        617,
+            582,
+        626,
+            598
+      ],
+      "graspable": true
+    }
+  ]
+}
+```

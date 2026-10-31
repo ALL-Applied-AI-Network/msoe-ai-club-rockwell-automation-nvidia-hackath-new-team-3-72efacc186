@@ -1,0 +1,1 @@
+{"category": "cube", "colour": "red", "yaw_deg": -27.1, "pose_confidence": 0.97, "reason": "The cube is red and appears to be resting on a flat surface with a slight tilt, consistent with the measured yaw angle."}

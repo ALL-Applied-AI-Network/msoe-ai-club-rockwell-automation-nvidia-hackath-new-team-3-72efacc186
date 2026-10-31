@@ -1,0 +1,16 @@
+{
+  "run": "randomized_09",
+  "seed": 642053768,
+  "pipeline_completed": false,
+  "task_complete": false,
+  "verified_pickups": 0,
+  "verified_placements": 0,
+  "abort_reason": "sort_scene_failed",
+  "rendered": false,
+  "frames": 0,
+  "failure_stage": "execution",
+  "command_exit_code": 1,
+  "detected_objects": 6,
+  "eligible_picks": 0,
+  "recorded_utc": "2026-10-29T02:03:33.643101+00:00"
+}

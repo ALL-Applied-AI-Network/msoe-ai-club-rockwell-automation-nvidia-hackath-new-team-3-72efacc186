@@ -1,0 +1,70 @@
+```json
+{
+  "objects": [
+    {
+      "label": "blue cube",
+      "category": "cube",
+      "colour": "blue",
+      "center": [
+        468,
+        582
+      ],
+      "bbox": [
+        467,
+        573,
+        477,
+          592
+      ],
+      "graspable": true
+    },
+    {
+      "label": "blue cube",
+      "category": "cube",
+      "colour": "blue",
+      "center": [
+        509,
+        573
+      ],
+      "bbox": [
+        506,
+        565,
+        515,
+          583
+      ],
+      "graspable": true
+    },
+    {
+      "label": "yellow cube",
+      "category": "cube",
+      "colour": "yellow",
+      "center": [
+        557,
+            680
+      ],
+      "bbox": [
+        553,
+        671,
+        563,
+            690
+      ],
+      "graspable": true
+    },
+    {
+      "label": "yellow cube",
+      "category": "cube",
+      "colour": "yellow",
+      "center": [
+        627,
+            767
+      ],
+      "bbox": [
+        623,
+        758,
+        634,
+            778
+      ],
+      "graspable": true
+    }
+  ]
+}
+```
