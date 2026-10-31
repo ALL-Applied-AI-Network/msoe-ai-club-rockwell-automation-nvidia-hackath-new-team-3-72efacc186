@@ -1,0 +1,10 @@
+{
+  "minimum_iou": 0.94,
+  "promoted": [
+    {
+      "detection_id": 5,
+      "silhouette_iou": 0.9443892750744787,
+      "yaw_deg": -8.032
+    }
+  ]
+}

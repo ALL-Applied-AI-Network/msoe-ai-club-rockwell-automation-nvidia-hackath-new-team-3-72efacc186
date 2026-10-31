@@ -1,0 +1,125 @@
+{
+  "image": "/workspace/fanuc_er4ia_sim/runs/grpr0_verified_04_retry1/side_view/world_camera.png",
+  "summary": {
+    "planned_cubes": 6,
+    "confirmed": 6,
+    "conflict": 0,
+    "occluded": 0,
+    "not_seen": 0,
+    "out_of_view": 0,
+    "cross_view_confirmed_rate": 1.0,
+    "max_side_lateral_offset_mm": 0.43,
+    "safe_to_execute": true,
+    "all_confirmed": true
+  },
+  "cubes": [
+    {
+      "detection_id": 0,
+      "expected_colour": "yellow",
+      "planned_xy_m": [
+        0.26041,
+        -0.13316
+      ],
+      "stack_level": 0,
+      "projected_px": 328,
+      "visible_fraction": 1.0,
+      "colour_fractions": {
+        "yellow": 0.875,
+        "blue": 0.0,
+        "red": 0.0
+      },
+      "status": "confirmed",
+      "side_lateral_offset_mm": -0.37
+    },
+    {
+      "detection_id": 3,
+      "expected_colour": "yellow",
+      "planned_xy_m": [
+        0.36672,
+        0.18262
+      ],
+      "stack_level": 1,
+      "projected_px": 1280,
+      "visible_fraction": 1.0,
+      "colour_fractions": {
+        "yellow": 0.878,
+        "blue": 0.0,
+        "red": 0.0
+      },
+      "status": "confirmed",
+      "side_lateral_offset_mm": -0.43
+    },
+    {
+      "detection_id": 4,
+      "expected_colour": "blue",
+      "planned_xy_m": [
+        0.34386,
+        0.26272
+      ],
+      "stack_level": 2,
+      "projected_px": 1943,
+      "visible_fraction": 1.0,
+      "colour_fractions": {
+        "yellow": 0.0,
+        "blue": 0.901,
+        "red": 0.0
+      },
+      "status": "confirmed",
+      "side_lateral_offset_mm": -0.13
+    },
+    {
+      "detection_id": 5,
+      "expected_colour": "blue",
+      "planned_xy_m": [
+        0.45171,
+        0.26617
+      ],
+      "stack_level": 3,
+      "projected_px": 1698,
+      "visible_fraction": 1.0,
+      "colour_fractions": {
+        "yellow": 0.0,
+        "blue": 0.893,
+        "red": 0.0
+      },
+      "status": "confirmed",
+      "side_lateral_offset_mm": -0.13
+    },
+    {
+      "detection_id": 1,
+      "expected_colour": "red",
+      "planned_xy_m": [
+        0.29439,
+        -0.07465
+      ],
+      "stack_level": 4,
+      "projected_px": 444,
+      "visible_fraction": 1.0,
+      "colour_fractions": {
+        "yellow": 0.0,
+        "blue": 0.0,
+        "red": 0.885
+      },
+      "status": "confirmed",
+      "side_lateral_offset_mm": -0.32
+    },
+    {
+      "detection_id": 2,
+      "expected_colour": "red",
+      "planned_xy_m": [
+        0.36971,
+        0.10963
+      ],
+      "stack_level": 5,
+      "projected_px": 869,
+      "visible_fraction": 1.0,
+      "colour_fractions": {
+        "yellow": 0.0,
+        "blue": 0.0,
+        "red": 0.865
+      },
+      "status": "confirmed",
+      "side_lateral_offset_mm": -0.21
+    }
+  ]
+}
