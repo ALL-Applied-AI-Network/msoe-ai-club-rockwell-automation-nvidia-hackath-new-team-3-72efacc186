@@ -1,6 +1,6 @@
 import unittest
 
-from vision.object_detection import (
+from AI_Object_Perception.object_detection import (
     validate_annotations,
     summarize_objects,
 )

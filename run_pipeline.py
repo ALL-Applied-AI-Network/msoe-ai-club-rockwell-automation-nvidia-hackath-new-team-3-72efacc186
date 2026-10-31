@@ -3,8 +3,8 @@ from pathlib import Path
 
 import cv2
 
-from vision.color_detection import detect_colored_objects
-from reasoning.grasp_decision import make_grasp_decision
+from AI_Object_Perception.color_detection import detect_colored_objects
+from AI_Grasp_Candidate_Selection.grasp_decision import make_grasp_decision
 
 
 # Project paths

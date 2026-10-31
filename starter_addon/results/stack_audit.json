@@ -1,0 +1,78 @@
+{
+  "place_xy_m": [
+    0.28,
+    0.1
+  ],
+  "layers": [
+    {
+      "level": 0,
+      "expected": "yellow",
+      "observed": "yellow",
+      "colour_fractions": {
+        "yellow": 1.0,
+        "blue": 0.0,
+        "red": 0.0
+      },
+      "match": true
+    },
+    {
+      "level": 1,
+      "expected": "yellow",
+      "observed": "yellow",
+      "colour_fractions": {
+        "yellow": 1.0,
+        "blue": 0.0,
+        "red": 0.0
+      },
+      "match": true
+    },
+    {
+      "level": 2,
+      "expected": "blue",
+      "observed": "blue",
+      "colour_fractions": {
+        "yellow": 0.0,
+        "blue": 1.0,
+        "red": 0.0
+      },
+      "match": true
+    },
+    {
+      "level": 3,
+      "expected": "blue",
+      "observed": "blue",
+      "colour_fractions": {
+        "yellow": 0.0,
+        "blue": 1.0,
+        "red": 0.0
+      },
+      "match": true
+    },
+    {
+      "level": 4,
+      "expected": "red",
+      "observed": "red",
+      "colour_fractions": {
+        "yellow": 0.0,
+        "blue": 0.0,
+        "red": 1.0
+      },
+      "match": true
+    },
+    {
+      "level": 5,
+      "expected": "red",
+      "observed": "red",
+      "colour_fractions": {
+        "yellow": 0.0,
+        "blue": 0.0,
+        "red": 1.0
+      },
+      "match": true
+    }
+  ],
+  "unexpected_cube_above_top": false,
+  "layers_matched": 6,
+  "stack_verified_by_vision": true,
+  "image": "/workspace/fanuc_er4ia_sim/runs/verified_vision_seed1458622090_01/side_frames/f01655.png"
+}
